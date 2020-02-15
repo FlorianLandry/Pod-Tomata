@@ -8,13 +8,16 @@ public class Shoot : MonoBehaviour
     ParticleSystem cannonParticleShooter;
     [SerializeField]
     ParticleSystem megaAttack;
+    [SerializeField]
+    UnityEngine.UI.Image image;
     int tempsMort = 0;
     int tempsAttente = 8;
-    int tempsMortSkill = 0;
-    int coolDownSkill = 180;
+    int tempsMortSkill = 180;
+    int coolDownSkill = 0;
 
     void Update()
     {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, (tempsMortSkill*100)/180);
         if (Input.GetMouseButton(1))
         {
             if (Input.GetMouseButton(0) && tempsMort >= tempsAttente)
@@ -23,12 +26,12 @@ public class Shoot : MonoBehaviour
                 tempsMort = 0;
             }
             tempsMort++;
-            if (Input.GetMouseButtonDown(2) && tempsMortSkill >= coolDownSkill)
+            if (Input.GetMouseButtonDown(2) && tempsMortSkill <= coolDownSkill)
             {
                 skill();
-                tempsMortSkill = 0;
+                tempsMortSkill = 180;
             }
-            tempsMortSkill++;
+            tempsMortSkill--;
         }
     }
 
