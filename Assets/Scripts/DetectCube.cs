@@ -11,6 +11,10 @@ public class DetectCube : MonoBehaviour
     private Transform target;
     [SerializeField]
     private TurnAround enRotation;
+    private int tempsMort = 0;
+    private int tempsAttente = 12;
+    [SerializeField]
+    private Shoot shoot;
 
     private void Start()
     {
@@ -60,6 +64,12 @@ public class DetectCube : MonoBehaviour
         {
             transform.LookAt(target);
             enRotation.enabled = false;
+            if (!Input.GetMouseButton(0) && tempsMort >= tempsAttente)
+            {
+                shoot.shoot();
+                tempsMort = 0;
+            }
+            tempsMort++;
         }
         else
         {
