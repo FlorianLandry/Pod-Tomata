@@ -11,12 +11,15 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && tempsMort >= tempsAttente)
+        if (Input.GetMouseButton(1))
         {
-            shoot();
-            tempsMort = 0;
+            if (Input.GetMouseButton(0) && tempsMort >= tempsAttente)
+            {
+                shoot();
+                tempsMort = 0;
+            }
+            tempsMort++;
         }
-        tempsMort++;
     }
 
     public void shoot()

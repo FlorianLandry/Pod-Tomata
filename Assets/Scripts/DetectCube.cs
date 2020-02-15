@@ -64,7 +64,7 @@ public class DetectCube : MonoBehaviour
         {
             transform.LookAt(target);
             enRotation.enabled = false;
-            if (!Input.GetMouseButton(0) && tempsMort >= tempsAttente)
+            if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1) && tempsMort >= tempsAttente)
             {
                 shoot.shoot();
                 tempsMort = 0;
